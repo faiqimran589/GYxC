@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Youth x Cancer — GYxC</title>
+<meta name="description" content="Project Global Youth x Cancer (GYxC) — a student-led initiative giving child cancer patients a normal life, and youth a role in oncology.">
+
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav">
+  <a class="brand" href="#home">
+    <svg viewBox="0 0 40 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20 2C10 8 8 16 20 24C32 32 30 40 20 46C10 40 8 32 20 24C32 16 30 8 20 2Z" stroke="#DA7B93" stroke-width="1.4"/>
+    </svg>
+    <span class="brand-word">GY<b>x</b>C</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  <nav class="links" id="navLinks">
+    <a href="#mission">Mission</a>
+    <a href="#impact">Impact</a>
+    <a href="#stories">Stories</a>
+    <a href="#involved">Get Involved</a>
+    <a href="#team">Team</a>
+    <a href="#donate">Donate</a>
+    <a href="#contact">Contact</a>
+    <a href="founder.html" class="founder-link">Read about the Founder</a>
+  </nav>
+</header>
+
+<main id="home-view">
+
+  <!-- ============ HOME ============ -->
+  <section id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-veil"></div>
+    <div class="wrap hero-content">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-kicker">Project Global Youth x Cancer</p>
+          <h1 class="hero-title">Every cell rolls<br>the dice. <em>Some<br>lose the lottery.</em></h1>
+          <p class="hero-sub">A student-led initiative for child cancer patients around the world — giving them a normal life, and giving youth a real role in oncology.</p>
+          <div class="hero-cta-row">
+            <a href="#involved" class="btn btn-solid">Get Involved</a>
+            <a href="#donate" class="btn btn-line">Donate</a>
+          </div>
+        </div>
+        <div class="hero-note">
+          <strong>500+</strong>
+          volunteers across six countries, working to end the silence around cancer — not just the disease.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BANNER STRIP ============ -->
+  <div class="banner-strip">
+    <img src="assets/images/hero-collage.jpg" alt="Portraits of children GYxC works with, with the words: Not too young to care, not too small to change.">
+  </div>
+
+  <!-- ============ MISSION ============ -->
+  <section id="mission">
+    <div class="wrap">
+      <p class="eyebrow">mission &amp; goals</p>
+      <p class="mission-quote">"It's not just biological. It's the way society metastasizes silence and distance into younger generations, leaving social wounds that outlast the disease itself."<span>— M. Haider Bashir, Founder</span></p>
+
+      <div class="goal-grid">
+        <div class="goal-cell"><span class="goal-num">i.</span><p>Help child cancer patients around the world live a normal life, and give them a normal experience through our volunteers.</p></div>
+        <div class="goal-cell"><span class="goal-num">ii.</span><p>Support families through treatment — practically, not just emotionally.</p></div>
+        <div class="goal-cell"><span class="goal-num">iii.</span><p>Eradicate the stigma built around the word "cancer," and teach people it is not always equal to death.</p></div>
+        <div class="goal-cell"><span class="goal-num">iv.</span><p>Show people that cancer can be treated — and highlight the teens improving cancer research.</p></div>
+        <div class="goal-cell"><span class="goal-num">v.</span><p>Give teens interested in oncology real opportunities, research access, and mentorship.</p></div>
+        <div class="goal-cell"><span class="goal-num">vi.</span><p>Hand interested teens the authority to open their own local GYxC chapters.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT ============ -->
+  <section id="impact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Where we've<br>reached so far</h2>
+        <p class="lede">GYxC started in 2023 with one purpose — awareness. It grew into a network of volunteers and ambassadors carrying that purpose into hospitals, homes, and classrooms across six countries.</p>
+      </div>
+
+      <div class="impact-layout">
+        <div>
+          <div class="counter-block">
+            <div class="counter-num"><span id="volCounter">0</span><small>volunteers</small></div>
+            <p class="counter-label">and growing, chapter by chapter</p>
+          </div>
+          <div class="impact-list">
+            <div class="impact-row"><span>Saudi Arabia</span><span>Ambassador — Judi Madkhali</span></div>
+            <div class="impact-row"><span>Uzbekistan</span><span>Book &amp; toy donations</span></div>
+            <div class="impact-row"><span>Pakistan</span><span>Awareness sessions &amp; treatment funds</span></div>
+            <div class="impact-row"><span>India</span><span>Hospital partnerships in progress</span></div>
+            <div class="impact-row"><span>Dubai</span><span>Regional network</span></div>
+            <div class="impact-row"><span>Canada</span><span>Regional network</span></div>
+          </div>
+        </div>
+
+        <div class="orbit-wrap">
+          <svg viewBox="0 0 400 400" id="orbitSvg">
+            <circle class="orbit-line" cx="200" cy="200" r="150"/>
+            <circle cx="200" cy="200" r="34" fill="none" stroke="#DA7B93" stroke-width="1"/>
+            <text x="200" y="205" text-anchor="middle" class="orbit-core-label">GYxC</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORIES ============ -->
+  <section id="stories">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Stories from<br>the chapters</h2>
+        <p class="lede">A look at what our ambassadors and volunteers have been doing on the ground.</p>
+      </div>
+    </div>
+    <div class="stories-pin">
+      <div class="stories-track" id="storiesTrack">
+
+        <div class="story-panel story-panel-wide">
+          <div class="story-photo grid6">
+            <img src="assets/images/uzbekistan-1-sign.jpg" alt="Sign for the children's oncology department, in Uzbek">
+            <img src="assets/images/uzbekistan-2-handover.jpg" alt="GYxC volunteer handing over a donation bag to hospital staff in Uzbekistan">
+            <img src="assets/images/uzbekistan-3-donations.jpg" alt="Books and toys donated to the children's oncology ward">
+            <img src="assets/images/uzbekistan-4-waterfall-decor.jpg" alt="Wall art decorating the hospital stairwell">
+            <img src="assets/images/uzbekistan-5-ward-room.jpg" alt="A decorated children's hospital room with books on the bed">
+            <img src="assets/images/uzbekistan-6-bed-book.jpg" alt="A donated book left on a young patient's hospital bed">
+          </div>
+          <p class="story-country">Uzbekistan</p>
+          <h3>Books, toys, and a normal afternoon</h3>
+          <p>Donated books, toys, and other items to young patients — small things that make a hospital room feel a little more like a bedroom.</p>
+          <p class="story-credit">Led by Ambassador Dilso'z Rahimova</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GET INVOLVED ============ -->
+  <section id="involved">
+    <div class="wrap">
+      <div class="involved-grid">
+        <div class="involved-copy">
+          <p class="eyebrow">get involved</p>
+          <h2 style="font-size:clamp(2rem,3.4vw,2.9rem); margin-bottom:22px;">Start a chapter, or join one.</h2>
+          <p>If you want to become part of GYxC, or start a new chapter in your city, reach out to us directly. We'll walk you through it.</p>
+        </div>
+        <div class="contact-routes">
+          <div class="route-row"><a href="https://www.instagram.com/itshaiderbashir" target="_blank" rel="noopener">M. Haider Bashir — Instagram</a><span class="route-tag">@itshaiderbashir</span></div>
+          <div class="route-row"><a href="https://www.linkedin.com/in/m-haider-bashir-467a27271" target="_blank" rel="noopener">M. Haider Bashir — LinkedIn</a><span class="route-tag">Founder</span></div>
+          <div class="route-row"><a href="https://www.instagram.com/projectgyxc" target="_blank" rel="noopener">Project GYxC — Instagram</a><span class="route-tag">@projectgyxc</span></div>
+          <div class="route-row"><a href="https://www.linkedin.com/company/globalyouthxcancer/" target="_blank" rel="noopener">Project GYxC — LinkedIn</a><span class="route-tag">Company page</span></div>
+          <div class="route-row"><span style="font-family:var(--serif); font-style:italic; color:var(--muted);">Or message any certified team member</span><span class="route-tag">see below</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section id="team">
+    <div class="wrap">
+      <p class="eyebrow">our team</p>
+      <h2 style="font-size:clamp(2rem,3.4vw,2.9rem); margin-bottom:50px;">Team members</h2>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo"><img src="assets/images/founder.jpg" alt="M. Haider Bashir"></div>
+          <h4>M. Haider Bashir</h4>
+          <p class="team-role">Founder</p>
+          <div class="team-meta"><span>Pakistan</span><a href="https://www.linkedin.com/in/m-haider-bashir-467a27271" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">AN</div>
+          <h4>Afiya Noorain</h4>
+          <p class="team-role">Co-Founder</p>
+          <div class="team-meta"><span>India</span><a href="https://linkedin.com/in/afiyanoorain" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">MT</div>
+          <h4>Muhammad Talha</h4>
+          <p class="team-role">Co-Founder &amp; Managing Director</p>
+          <div class="team-meta"><span>Pakistan</span><a href="https://linkedin.com/in/muhammad-talha-225402393" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">DR</div>
+          <h4>Dilso'z Rahimova</h4>
+          <p class="team-role">Ambassador</p>
+          <div class="team-meta"><span>Uzbekistan</span><a href="https://linkedin.com/in/dilso-z-rahimova-b942162b2" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><img src="assets/images/team-judi.jpg" alt="Judi Madkhali"></div>
+          <h4>Judi Madkhali</h4>
+          <p class="team-role">Ambassador</p>
+          <div class="team-meta"><span>Saudi Arabia</span><a href="https://linkedin.com/in/judi-madkhali" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">AN</div>
+          <h4>Ayesha Naveed</h4>
+          <p class="team-role">Chapter President</p>
+          <div class="team-meta"><span>Kashmir, Pakistan</span><a href="https://linkedin.com/in/ayesha-naveed-5809773ab" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DONATE ============ -->
+  <section id="donate">
+    <p class="eyebrow">donate</p>
+    <p class="donate-line">Happiness here isn't measured in the amount you donate — but the <span class="accent">amount of smiles</span> you can bring.</p>
+    <a href="https://hcb.hackclub.com/donations/start/global-youth-x-cancer" target="_blank" rel="noopener" class="btn btn-solid">Donate to GYxC</a>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact us</h2>
+        <p class="lede">Reach the project directly, or reach the founder — both are open inboxes.</p>
+      </div>
+      <div class="socials">
+        <a class="social-pill" href="https://www.instagram.com/projectgyxc" target="_blank" rel="noopener"><b>IG</b> Project GYxC</a>
+        <a class="social-pill" href="https://www.linkedin.com/company/globalyouthxcancer/" target="_blank" rel="noopener"><b>IN</b> Project GYxC</a>
+        <a class="social-pill" href="https://www.instagram.com/itshaiderbashir" target="_blank" rel="noopener"><b>IG</b> M. Haider Bashir</a>
+        <a class="social-pill" href="https://www.linkedin.com/in/m-haider-bashir-467a27271" target="_blank" rel="noopener"><b>IN</b> M. Haider Bashir</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>© 2026 Project Global Youth x Cancer</span>
+    <span>Website built by Tanzeem Foundation, founded by Faisal Yasin.</span>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
