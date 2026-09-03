@@ -98,16 +98,20 @@ if (counterEl) {
   function getScrollAmount() {
     return -(track.scrollWidth - window.innerWidth + 80);
   }
-  gsap.to(track, {
-    x: getScrollAmount,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#stories',
-      start: 'top top',
-      end: () => `+=${Math.abs(getScrollAmount())}`,
-      scrub: 1,
-      pin: true,
-      invalidateOnRefresh: true
+  ScrollTrigger.matchMedia({
+    "(min-width: 861px)": function () {
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#stories',
+          start: 'top top',
+          end: () => `+=${Math.abs(getScrollAmount())}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true
+        }
+      });
     }
   });
 })();
