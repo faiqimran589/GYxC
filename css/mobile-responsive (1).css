@@ -1,0 +1,244 @@
+/* =========================================================
+   GYxC — mobile-responsive.css  (v2)
+   Purpose : Mobile/tablet overrides ONLY.
+   Scope   : Every rule below sits inside a max-width media query,
+             so nothing here touches anything above 860px — which
+             is the same breakpoint style.css already uses for the
+             nav — meaning desktop is pixel-identical to before.
+   Load    : AFTER css/style.css, as a second <link> tag.
+             It never duplicates a selector's desktop rule — it only
+             narrows things further for small screens.
+
+   v2 changes vs. the previous version, in response to real bugs
+   on mobile:
+     1) Stories section  — all 6 Uzbekistan photos now show in a
+        clean 2-column grid instead of only ~2 being visible.
+        Root cause: #storiesTrack is horizontally pinned/scrolled by
+        GSAP ScrollTrigger (see js/main.js). On a phone, the track
+        is narrower than the screen, so the pin math pushed the
+        grid partly out of view. Fixed by pairing this CSS with a
+        tiny JS change (below) that only enables the pin/scroll
+        animation at ≥861px, and lets the grid sit in normal,
+        fully-visible page flow on mobile.
+     2) Impact list ("Pakistan" row, etc.) and Get Involved rows —
+        these are label + description pairs laid out with
+        `justify-content:space-between` and no wrapping. On a
+        narrow phone the two pieces of text were fighting for the
+        same line, which is what caused the bad alignment. Fixed by
+        stacking label above description, left-aligned, on small
+        screens — content stays visually connected, nothing
+        overlaps or runs off-screen.
+     3) Team grid — restores 2 columns on phones (was collapsing to
+        1 column at 560px in style.css). Card padding/photo/type
+        sizes are trimmed so 2-up cards stay comfortable down to
+        320px.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1) Global safety net — stop any horizontal scroll on phones
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  html{ overflow-x:hidden; width:100%; }
+  body{ overflow-x:hidden; width:100%; }
+  section, .wrap, header.site-nav, footer.site-footer,
+  .founder-header, .founder-hero, .founder-body{
+    max-width:100vw;
+  }
+  a, p, h1, h2, h3, h4, span, li{
+    overflow-wrap:break-word;
+    word-break:normal;
+  }
+}
+
+/* ---------------------------------------------------------
+   2) Tighter edge margin + section spacing for mobile/tablet
+      (style.css reads every section's side padding from the
+      --edge variable, so redefining it here reflows all of
+      them without touching style.css)
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  :root{ --edge: clamp(18px, 5vw, 40px); }
+  section{ padding:88px 0; }
+  #home{ padding-bottom:64px; }
+  #involved{ padding-top:88px; }
+  #stories{ padding:88px 0 0; }
+  #donate{ padding:110px var(--edge); }
+  .founder-body{ padding:70px var(--edge) 100px; }
+  .founder-hero{ padding:16px var(--edge) 60px; }
+}
+@media (max-width: 480px){
+  section{ padding:64px 0; }
+  #home{ padding-bottom:48px; }
+  #involved{ padding-top:64px; }
+  #stories{ padding:64px 0 0; }
+  #donate{ padding:80px var(--edge); }
+  .founder-body{ padding:56px var(--edge) 80px; }
+  .founder-hero{ padding:14px var(--edge) 44px; }
+}
+
+/* ---------------------------------------------------------
+   3) Nav — same mobile menu behavior as style.css, just a
+      touch-friendly toggle size
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  header.site-nav{ padding:16px var(--edge); }
+  .nav-toggle{ width:44px; height:44px; font-size:1.05rem; }
+  nav.links{ padding-top:96px; }
+}
+
+/* ---------------------------------------------------------
+   4) Headings — lower the floor of the existing clamp()
+      values so nothing overflows a 320–430px screen. Desktop's
+      clamp() max values are never reached on mobile anyway,
+      so desktop is unaffected.
+   --------------------------------------------------------- */
+@media (max-width: 480px){
+  .hero-title{ font-size:clamp(2rem, 9.5vw, 2.6rem); line-height:1.06; }
+  .hero-sub{ font-size:0.98rem; }
+  .hero-note{ max-width:none; }
+  .section-head h2{ font-size:clamp(1.7rem, 7.5vw, 2.1rem); }
+  .mission-quote{ font-size:clamp(1.15rem, 5.5vw, 1.4rem); }
+  .donate-line{ font-size:clamp(1.35rem, 6.5vw, 1.7rem); }
+  .founder-name-block h1{ font-size:clamp(2rem, 9.5vw, 2.5rem); }
+  .meet-line{ font-size:clamp(1.15rem, 5.5vw, 1.4rem); padding-bottom:44px; margin-bottom:44px; }
+  .counter-num{ font-size:clamp(2.6rem, 13vw, 3.6rem); }
+  .story-panel h3{ font-size:1.4rem; }
+}
+@media (max-width: 380px){
+  .hero-title{ font-size:clamp(1.75rem, 9.5vw, 2.05rem); }
+  .founder-name-block h1{ font-size:clamp(1.75rem, 9.5vw, 2.05rem); }
+  .section-head h2{ font-size:clamp(1.5rem, 8vw, 1.85rem); }
+}
+
+/* ---------------------------------------------------------
+   5) STORIES — show every photo in a real responsive grid.
+      Below 861px the pin/horizontal-scroll ScrollTrigger is
+      switched off in js/main.js (see the JS snippet provided
+      separately), so #storiesTrack behaves like a normal block
+      in the page instead of a horizontally-panned strip. These
+      rules make that normal-flow layout look clean and keep the
+      6 photos in a proper 2-per-row grid at every phone width.
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  .stories-track{
+    display:block;
+    width:100%;
+    transform:none;
+  }
+  .story-panel,
+  .story-panel-wide{
+    width:100%;
+    flex:none;
+    margin-left:0;
+    padding:0 var(--edge) 64px;
+    min-height:auto;
+  }
+}
+@media (max-width: 640px){
+  /* grid-template-columns is already 2-up here via style.css;
+     swap the fixed 3:2 aspect-ratio for real row heights so no
+     photo gets squashed thin, and all 6 stay clearly visible */
+  .story-photo.grid6{
+    aspect-ratio:auto;
+    grid-auto-rows:minmax(130px, auto);
+    gap:3px;
+  }
+}
+@media (max-width: 480px){
+  .story-photo.grid6{ grid-auto-rows:minmax(110px, auto); }
+  .story-panel, .story-panel-wide{ padding-bottom:48px; }
+}
+
+/* ---------------------------------------------------------
+   6) IMPACT LIST & GET INVOLVED ROWS — fixes the "Pakistan"
+      alignment bug. Each row is a label ("Pakistan") + a
+      description that were sharing one line via
+      justify-content:space-between with no wrap, which is what
+      broke on narrow screens. Stacking them (label on top,
+      description directly under it, both left-aligned) keeps
+      the label and its text visually connected, with clean
+      spacing and no overlap — closest match to how the desktop
+      row reads, just vertical instead of horizontal.
+   --------------------------------------------------------- */
+@media (max-width: 600px){
+  .impact-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+    padding:14px 0;
+  }
+  .impact-row span:first-child{ font-size:1rem; }
+  .impact-row span:last-child{ font-size:0.82rem; }
+
+  .route-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+    padding:16px 0;
+  }
+  .route-row a{ font-size:1rem; }
+  .route-row .route-tag{ font-size:0.78rem; }
+}
+
+/* ---------------------------------------------------------
+   7) TEAM GRID — keep 2 members per row on phones instead of
+      collapsing to 1-per-row (style.css drops to 1 column at
+      560px; this restores 2 columns all the way down to 320px,
+      matching the pattern below).
+      [ Member 1 ] [ Member 2 ]
+      [ Member 3 ] [ Member 4 ]
+      [ Member 5 ] [ Member 6 ]
+      No team member is removed — card padding, photo size and
+      type scale are trimmed so 2-up cards stay comfortable and
+      readable at every width down to 320px.
+   --------------------------------------------------------- */
+@media (max-width: 560px){
+  .team-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 860px){
+  .team-card{ padding:22px 18px 24px; }
+  .team-meta{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+@media (max-width: 480px){
+  .team-card{ padding:18px 14px 20px; }
+  .team-photo{ width:48px; height:48px; margin-bottom:14px; font-size:0.85rem; }
+  .team-card h4{ font-size:0.95rem; line-height:1.25; margin-bottom:3px; }
+  .team-role{ font-size:0.76rem; margin-bottom:10px; }
+  .team-meta{ font-size:0.74rem; }
+}
+@media (max-width: 380px){
+  .team-card{ padding:16px 12px 18px; }
+  .team-photo{ width:42px; height:42px; }
+  .team-card h4{ font-size:0.88rem; }
+}
+
+/* ---------------------------------------------------------
+   8) Buttons / tap targets — comfortable touch size on phones
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  .btn{ padding:14px 24px; font-size:0.95rem; }
+  .hero-cta-row{ gap:12px; }
+  .social-pill{ padding:13px 18px; }
+}
+
+/* ---------------------------------------------------------
+   9) Orbit SVG diagram (Impact "reach" network) — shrink the
+      label text slightly on the smallest phones so the longer
+      country names (e.g. "Saudi Arabia", "Uzbekistan") don't
+      crowd their neighbors around the circle. The diagram is
+      drawn by JS at a fixed 400x400 viewBox and already scales
+      with its container, so this is a pure sizing tweak, not a
+      change to the animation itself.
+   --------------------------------------------------------- */
+@media (max-width: 480px){
+  .orbit-wrap{ max-width:280px; }
+  .orbit-label{ font-size:9px; }
+  .orbit-core-label{ font-size:12px; }
+}
+@media (max-width: 380px){
+  .orbit-label{ font-size:8px; }
+}
