@@ -1,0 +1,157 @@
+/* =========================================================
+   GYxC — mobile-responsive.css
+   Purpose : Mobile/tablet overrides ONLY.
+   Scope   : Every rule below is inside a max-width media query,
+             so nothing here can ever touch the desktop layout
+             (desktop = everything wider than 860px, which is the
+             same breakpoint style.css already uses for the nav).
+   Load    : AFTER css/style.css, as a second, separate <link> tag.
+             It does not replace or duplicate any rule in style.css —
+             it only narrows things further for small screens.
+   Note    : This file does not touch the Three.js DNA hero, the
+             GSAP ScrollTrigger animations, or the SVG orbit diagram.
+             Those already resize themselves via JS (see main.js),
+             so no 3D effect/animation is disabled, simplified, or
+             removed here — only spacing, type scale and safe
+             stacking behavior are adjusted for small viewports.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1) Global safety net — stop any horizontal scroll on phones
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  html{ overflow-x:hidden; width:100%; }
+  body{ overflow-x:hidden; width:100%; }
+  section, .wrap, header.site-nav, footer.site-footer,
+  .founder-header, .founder-hero, .founder-body{
+    max-width:100vw;
+  }
+  /* long words / long link labels wrap instead of pushing the layout wide */
+  a, p, h1, h2, h3, h4, span, li{
+    overflow-wrap:break-word;
+    word-break:normal;
+  }
+}
+
+/* ---------------------------------------------------------
+   2) Tighter edge margin + section spacing for mobile/tablet
+      (style.css already reads everything from the --edge
+      variable, so redefining it here is enough to reflow
+      every section's side padding without editing style.css)
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  :root{
+    --edge: clamp(18px, 5vw, 40px);
+  }
+  section{ padding:88px 0; }
+  #home{ padding-bottom:64px; }
+  #involved{ padding-top:88px; }
+  #stories{ padding:88px 0 0; }
+  #donate{ padding:110px var(--edge); }
+  .founder-body{ padding:70px var(--edge) 100px; }
+  .founder-hero{ padding:16px var(--edge) 60px; }
+}
+
+@media (max-width: 480px){
+  section{ padding:64px 0; }
+  #home{ padding-bottom:48px; }
+  #involved{ padding-top:64px; }
+  #stories{ padding:64px 0 0; }
+  #donate{ padding:80px var(--edge); }
+  .founder-body{ padding:56px var(--edge) 80px; }
+  .founder-hero{ padding:14px var(--edge) 44px; }
+  .goal-cell{ padding:26px 22px; }
+  .team-card{ padding:24px 20px 26px; }
+}
+
+/* ---------------------------------------------------------
+   3) Nav — keep the existing mobile menu behavior from
+      style.css, just make the toggle a touch-friendly size
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  header.site-nav{ padding:16px var(--edge); }
+  .nav-toggle{ width:44px; height:44px; font-size:1.05rem; }
+  nav.links{ padding-top:96px; }
+}
+
+/* ---------------------------------------------------------
+   4) Headings — keep the same clamp() approach already used
+      in style.css, just lower the floor so nothing overflows
+      a 320–430px screen. Desktop's clamp() max values are
+      never reached on mobile anyway, so desktop is unaffected.
+   --------------------------------------------------------- */
+@media (max-width: 480px){
+  .hero-title{ font-size:clamp(2rem, 9.5vw, 2.6rem); line-height:1.06; }
+  .hero-sub{ font-size:0.98rem; }
+  .hero-note{ max-width:none; }
+  .section-head h2{ font-size:clamp(1.7rem, 7.5vw, 2.1rem); }
+  .mission-quote{ font-size:clamp(1.15rem, 5.5vw, 1.4rem); }
+  .donate-line{ font-size:clamp(1.35rem, 6.5vw, 1.7rem); }
+  .founder-name-block h1{ font-size:clamp(2rem, 9.5vw, 2.5rem); }
+  .meet-line{ font-size:clamp(1.15rem, 5.5vw, 1.4rem); padding-bottom:44px; margin-bottom:44px; }
+  .counter-num{ font-size:clamp(2.6rem, 13vw, 3.6rem); }
+}
+
+@media (max-width: 380px){
+  .hero-title{ font-size:clamp(1.75rem, 9.5vw, 2.05rem); }
+  .founder-name-block h1{ font-size:clamp(1.75rem, 9.5vw, 2.05rem); }
+  .section-head h2{ font-size:clamp(1.5rem, 8vw, 1.85rem); }
+}
+
+/* ---------------------------------------------------------
+   5) Label/value rows — these sit side-by-side on desktop.
+      flex-wrap lets them STAY side-by-side on every phone
+      width where the text actually fits, and only wrap to a
+      second line on the narrowest phones where it wouldn't —
+      so nothing overlaps and nothing is forced into a
+      cramped single line.
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  .impact-row, .route-row, .team-meta{
+    flex-wrap:wrap;
+    row-gap:6px;
+    column-gap:16px;
+  }
+  .route-row a{ font-size:1rem; }
+}
+
+/* ---------------------------------------------------------
+   6) Grid "cards" — keep side-by-side pairs wherever two
+      columns still leave each card readable; style.css
+      already drops to 1 column on the widths where 2 columns
+      would be unreadable (goal-grid, involved-grid, impact-layout,
+      founder-cols, founder-hero all do this on their own).
+      The only extra tuning needed here is the photo grid and
+      team grid gutters, so cards don't feel cramped edge-to-edge.
+   --------------------------------------------------------- */
+@media (max-width: 640px){
+  .story-photo.grid6{ gap:3px; }
+  .story-panel{ padding-bottom:80px; min-height:auto; }
+}
+
+@media (max-width: 560px){
+  .team-grid{ gap:2px; }
+}
+
+/* ---------------------------------------------------------
+   7) Buttons / tap targets — comfortable touch size on phones
+   --------------------------------------------------------- */
+@media (max-width: 860px){
+  .btn{ padding:14px 24px; font-size:0.95rem; }
+  .hero-cta-row{ gap:12px; }
+  .social-pill{ padding:13px 18px; }
+}
+
+/* ---------------------------------------------------------
+   8) Orbit SVG diagram — scale it down slightly on the
+      smallest phones so its labels (country names) don't
+      crowd each other. The diagram itself is drawn by JS
+      (main.js) at a fixed 400x400 viewBox and scales with
+      its container automatically, so this is a pure sizing
+      tweak, not a change to the animation.
+   --------------------------------------------------------- */
+@media (max-width: 480px){
+  .orbit-wrap{ max-width:280px; }
+  .orbit-label{ font-size:9px; }
+  .orbit-core-label{ font-size:12px; }
+}
