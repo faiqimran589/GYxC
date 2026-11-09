@@ -43,7 +43,7 @@ if (counterEl) {
 (function () {
   const svg = document.getElementById('orbitSvg');
   if (!svg) return;
-  const countries = ['Pakistan', 'India', 'Dubai', 'Canada', 'Uzbekistan', 'Saudi Arabia'];
+  const countries = ['Pakistan', 'India', 'United Arab Emirates', 'Canada', 'Uzbekistan', 'Saudi Arabia'];
   const cx = 200, cy = 200, r = 150;
 
   countries.forEach((name, i) => {
